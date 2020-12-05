@@ -1,45 +1,28 @@
-import numpy as npy, matplotlib.pyplot as plt, math
-
-def function_creator(x,n):
-    out = 0
-    while n:
-        out += pow(x,n)*n
-        n = n-1
-    out = out-10
-    return out
-
-
-def bisection(a,b,polynomial_power,atol):
-    fa = function_creator(a, polynomial_power)
-    fb = function_creator(b, polynomial_power)
-
-    if fa*fb >= 0:
-        print("invalid input for bisection method")
-        return
-
-    if atol :
-        iteration = math.log2((b-a)/(2*atol))
-
-    elif atol == 0:
-        iteration = 1
-
-    while fa*fb < 0 and iteration:
-        mid_point = (a+b)/2
-        fmid = function_creator(mid_point,polynomial_power)
-        if atol != 0:
-            iteration = iteration-1
-        if fmid*fa <= 0:
-            b = mid_point
-            fb = fmid
-        if fmid*fb <= 0:
-            a = mid_point
-            fa = fmid
-        if fa == 0 or fb == 0:
-            if fa == 0:
-                b = a
+from math import log, ceil
+def bisection(start_point, end_point,f, epsilon) -> float:
+    """finding the root of the function with bisection method.
+    Args:
+        start_point (float): intuitive starting point.
+        end_point (float): intuitive end point.
+        f (function): the function which we will try to find it's root.
+        epsilon (float): tolerance
+    Returns:
+        float: the function's root.
+    """
+    m = (start_point + end_point) / 2.0
+    k = ceil(-(log(epsilon/(end_point-start_point))/log(2))) # number of iterations upper bound
+    for i in range(k):
+        if abs(start_point - end_point) > epsilon:
+            if f(m) == 0:
+                print(f"took {i} iterations")
+                return m
+            elif f(start_point) * f(m) < 0:
+                end_point = m
             else:
-                a = b
-    return (a+b)/2
+                start_point = m
+            m = (start_point + end_point) / 2.0
+            # print(f"{start_point} + {end_point} / 2={m}")
+        # print(f"took {i} iterations")
+    return m
 
-first_result = bisection(0.0,10.0,4,0)
-print(first_result)
+print(bisection(-1.5,1.5,lambda x: x*x +3*x + 2, 1e-4))
