@@ -71,26 +71,32 @@ def jacobi(matrix, RHS_vec, epsilon=1e-3, max_iterations=1000) -> None:
         x = x_new
     print("Solution: {0}".format(x))
 
-
 # initialize the matrix
-A1 = np.array([[10., -1., 2., 0.],
-               [-1., 11., -1., 3.],
-               [2., -1., 10., -1.],
-               [0., 3., -1., 8.]])
 
-A2 = np.array([[3., -2., 1.],
-               [1., -3., 2.],
-               [-1., 2., 4.]])
+#Question No. 20:
+A3 = np.array([[10, 8, 1],
+                [4, 10, -5],
+                [5, 1, 10]])
+#Question No. 23:
+A2 = np.array([[0.04, 0.01, 0.01],
+                [0.2, 0.5, -0.2],
+               [1, 2, 4]])
 
 # initialize the RHS vector
-b1 = np.array([6.0, 25.0, -11.0, 15.0])
+#Question No. 20:
+b3 = np.array([-7,2,1.5])
+#Question No. 23:
+b2 = np.array([0.06,0.3,11])
 
-b2 = np.array([6.0, 25.0, -11.0])
-
-gauss_seidel(A1, b1)
+print("#Question No. 23 using gauss_seidel:")
+gauss_seidel(A2, b2) #23
 print()
-gauss_seidel(A2, b2)
-print()
-jacobi(A1, b1)
-print()
+print("#Question No. 23 using jacobi:")
 jacobi(A2, b2)
+print()
+print("#Question No. 20 using gauss_seidel:")
+gauss_seidel(A3, b3) #20
+print()
+print("#Question No. 20 using jacobi:")
+jacobi(A3, b3)
+
