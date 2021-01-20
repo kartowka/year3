@@ -10,11 +10,12 @@ def newton_raphson(f, x0, epsilon=1e-4):
         epsilon (float, optional): tolerance value. Defaults to 1e-4.
     """
     def func_der(x):
-        return 12*x**2 - 48
+        #return 12*x**2 - 48
         #Question No.4:
-            #return math.exp(2*x)*(x*math.cos(-6+5*x**2+2*x**3) * (5+3*x) + math.sin(-6+5*x**2+2*x**3))
+        #return math.exp(2*x)*(x*math.cos(-6+5*x**2+2*x**3) * (5+3*x) + math.sin(-6+5*x**2+2*x**3))
+
         #Question No.17:
-            #return (-6*math.exp(math.pow(-x,2)-5*x-3)*math.pow(x,4)-13*math.exp(math.pow(-x,2)-5*x-3)*math.pow(x,3)+14*math.exp(math.pow(-x,2)-5*x-3)*math.pow(x,2)-2*math.exp(math.pow(-x,2)-5*x-3)*x)
+        return (-6*math.exp(math.pow(-x,2)-5*x-3)*math.pow(x,4)-13*math.exp(math.pow(-x,2)-5*x-3)*math.pow(x,3)+14*math.exp(math.pow(-x,2)-5*x-3)*math.pow(x,2)-2*math.exp(math.pow(-x,2)-5*x-3)*x)
 
     x1 = 0
     solution = False
@@ -56,12 +57,12 @@ def secant(f, x0, x1, epsilon=1e-4):
         x1 = x
 
 
-def func(x): return 4*x**3 - 48*x + 5
-#def func(x): return ((math.sin(2*x**3+5*x**2-6))/(2*math.exp(-2*x)))
+#def func(x): return 4*x**3 - 48*x + 5
 #Question No.4:
-    #def func(x): return (math.pow(x,2)*math.exp(math.pow(-x,2)-5*x-3))*(3*x-1)
+#def func(x): return ((math.sin(2*x**3+5*x**2-6))/(2*math.exp(-2*x)))
 #Question No.17:
-    #def func(x): return x**2*math.exp(-x**2-5*x-3)*(3*x-1)
+def func(x): return (math.pow(x,2)*math.exp(math.pow(-x,2)-5*x-3))*(3*x-1)
+#def func(x): return x**2*math.exp(-x**2-5*x-3)*(3*x-1)
 
 
 def activator(method, f):
@@ -86,11 +87,11 @@ def activator(method, f):
     
 
 if __name__ == "__main__":
-    range_tuple = (0,10)
+    #range_tuple = (0,10)
     #Question No.4: range [-1,1.5]
-        #range_tuple = (-1, 1.5)
+    #range_tuple = (-1, 1.5)
     #Question No. 17: range [0,1.5]
-        #range_tuple = (0, 1.5)
+    range_tuple = (0, 1.5)
     print('Newton-Rhapson roots: ')
     activator(newton_raphson, func)
     print()
