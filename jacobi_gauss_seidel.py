@@ -42,13 +42,13 @@ def gauss_seidel(matrix, RHS_vec) -> None:
             s1 = np.dot(matrix[i, :i], x_new[:i])
             s2 = np.dot(matrix[i, i + 1:], x[i + 1:])
             x_new[i] = (RHS_vec[i] - s1 - s2) / matrix[i, i]
-        if np.allclose(x, x_new, rtol=1e-3):  # 0.001 iter limit
+        if np.allclose(x, x_new, rtol=1e-5):  # 0.001 iter limit
             break
         x = x_new
     print("Solution: {0}".format(x))
 
 
-def jacobi(matrix, RHS_vec, epsilon=1e-3, max_iterations=1000) -> None:
+def jacobi(matrix, RHS_vec, epsilon=1e-5, max_iterations=1000) -> None:
     """solves a system of linear equations with Jacobi method.
     Args:
         matrix (ndarray): our coefficients NxN matrix.
