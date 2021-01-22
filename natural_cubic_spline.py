@@ -1,7 +1,7 @@
 import numpy as np
 from Matrix import Matrix
 from math import pi
-
+from jacobi_gauss_seidel import gauss_seidel
 
 def spline_cubic(data, value, is_natural=True, first_der=0, last_der=0):
     """
@@ -42,11 +42,13 @@ def spline_cubic(data, value, is_natural=True, first_der=0, last_der=0):
         A[i][i - 1] = h(i - 1) / 6
         A[i][i] = ((h(i - 1) + h(i)) / 3)
         A[i][i + 1] = h(i) / 6
-    Mat = Matrix(A, b)
+    print(A)
+    print(b)
+    #Mat = Matrix(A, b)
     print("The matrix and the solution vector of the cubic spline:\n", A, b)
     print("\ncalculating the matrix results with gauss seidel.....")
 
-    Mi = Mat.gauss_seidel(list(0.0 for _ in range(len(b))))
+    Mi = gauss_seidel(A,b)
     print("Mi - vector: ", Mi)
     print("\n")
     results = [0.0 for _ in range(n - 1)]
@@ -64,3 +66,4 @@ def spline_cubic(data, value, is_natural=True, first_der=0, last_der=0):
 
 #spline_cubic(((0, 0), (pi/6, 0.5), (pi/4, 0.7072),(pi/2,1)), pi/3)
 spline_cubic(((0.1, -0.29004996), (0.2, -0.56079734), (0.3, -0.81401972)), 0.25)
+

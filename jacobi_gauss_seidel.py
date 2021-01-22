@@ -48,9 +48,10 @@ def gauss_seidel(matrix, RHS_vec) -> None:
         if np.allclose(x, x_new, rtol=1e-5):  # 0.001 iter limit
             break
         x = x_new
-        print(f'[x1r+1 = {x[0]}, x2r+1 = {x[1]}, x3r+1 = {x[2]}] iteration No. : {it_count}')
+        print(f'[x1r+1 = {x[0]}, x2r+1 = {x[1]}, x3r+1 = {x[2]}] iteration No. : {it_count+1}')
         iter_no=it_count
-    print(f'Solution found : [x1r+1 = {x[0]}, x2r+1 = {x[1]}, x3r+1 = {x[2]}] iteration No. : {iter_no}')
+    print(f'Solution found : [x1r+1 = {x[0]}, x2r+1 = {x[1]}, x3r+1 = {x[2]}] iteration No. : {iter_no+1}')
+    return x
 
 def jacobi(matrix, RHS_vec, epsilon=1e-5, max_iterations=1000) -> None:
     """solves a system of linear equations with Jacobi method.
