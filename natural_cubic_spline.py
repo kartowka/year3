@@ -1,6 +1,4 @@
 import numpy as np
-from Matrix import Matrix
-from math import pi
 from jacobi_gauss_seidel import gauss_seidel
 
 def spline_cubic(data, value, is_natural=True, first_der=0, last_der=0):
@@ -64,6 +62,5 @@ def spline_cubic(data, value, is_natural=True, first_der=0, last_der=0):
     print(results)
     return results
 
-#spline_cubic(((0, 0), (pi/6, 0.5), (pi/4, 0.7072),(pi/2,1)), pi/3)
 spline_cubic(((0.1, -0.29004996), (0.2, -0.56079734), (0.3, -0.81401972)), 0.25)
 
